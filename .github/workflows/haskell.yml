@@ -44,7 +44,7 @@ jobs:
         proj=HaskellProblems-0.1.0.0
         tix=$(find ./dist-newstyle -name $proj.tix)
         mix=$(find ./dist-newstyle -name vanilla -print -quit)/mix/$proj
-        hpc-codecov --mix=$mix --out=codecov.json $tix
+        ~/.cabal/bin/hpc-codecov --mix=$mix --out=codecov.json $tix
     - name: Upload coverage to codecov
       uses: codecov/codecov-action@v1
       with:
