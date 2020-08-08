@@ -146,3 +146,7 @@ removeAt xs n = (elementAt xs n, take (n - 1) xs ++ drop n xs)
 -- Problem 21
 insertAt :: a -> [a] -> Int -> [a]
 insertAt x xs n = take (n - 1) xs ++ [x] ++ drop (n - 1) xs
+
+-- Problem 22
+range :: Integer -> Integer -> [Integer]
+range l r = if l > r then [] else l : range (l + 1) r

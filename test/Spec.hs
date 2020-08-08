@@ -20,6 +20,8 @@ unitTests = testGroup
   [ ut01
   , ut02
   , ut03
+  , ut04
+  , ut05
   , ut06
   , ut07
   , ut08
@@ -36,6 +38,7 @@ unitTests = testGroup
   , ut19
   , ut20
   , ut21
+  , ut22
   ]
 
 scProps :: TestTree
@@ -47,6 +50,7 @@ scProps = testGroup
     $ \list -> myReverse (list :: [Int]) == reverse list
   , SC.testProperty "Problem 11 & 13: encode"
     $ \list -> encodeModified (list :: [Int]) == encodeDirect list
+  , SC.testProperty "Problem 22: range" $ \x y -> range x y == [x .. y]
   ]
 
 ut01 :: TestTree
@@ -69,6 +73,20 @@ ut03 = testGroup
   "Problem 03: elementAt"
   [ testCase "Valid index" $ elementAt [1, 2, 3] 2 @?= Just 2
   , testCase "Invalid index" $ elementAt [1, 2] 3 @?= (Nothing :: Maybe Int)
+  ]
+
+ut04 :: TestTree
+ut04 = testGroup
+  "Problem 04: myLength"
+  [ testCase "Non-empty list" $ myLength [1, 2, 3, 4, 5] @?= 5
+  , testCase "Empty list" $ myLength [] @?= 0
+  ]
+
+ut05 :: TestTree
+ut05 = testGroup
+  "Problem 05: myReverse"
+  [ testCase "Non-empty list" $ myReverse [1, 2, 3, 4, 5] @?= [5, 4, 3, 2, 1]
+  , testCase "Empty list" $ myReverse [] @?= ([] :: [Int])
   ]
 
 ut06 :: TestTree
@@ -213,4 +231,11 @@ ut21 = testGroup
   [ testCase "Normal insertion" $ insertAt 3 [1, 2, 4, 5] 3 @?= [1, 2, 3, 4, 5]
   , testCase "Left overflow" $ insertAt 1 [2, 3, 4, 5] (-1) @?= [1, 2, 3, 4, 5]
   , testCase "Right overflow" $ insertAt 5 [1, 2, 3, 4] 6 @?= [1, 2, 3, 4, 5]
+  ]
+
+ut22 :: TestTree
+ut22 = testGroup
+  "Problem 22: range"
+  [ testCase "Normal range" $ range 1 5 @?= [1, 2, 3, 4, 5]
+  , testCase "Empty range" $ range 5 1 @?= ([] :: [Integer])
   ]
