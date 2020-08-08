@@ -142,3 +142,7 @@ rotate xs d =
 -- Problem 20
 removeAt :: [a] -> Int -> (Maybe a, [a])
 removeAt xs n = (elementAt xs n, take (n - 1) xs ++ drop n xs)
+
+-- Problem 21
+insertAt :: a -> [a] -> Int -> [a]
+insertAt x xs n = take (n - 1) xs ++ [x] ++ drop (n - 1) xs

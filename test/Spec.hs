@@ -35,6 +35,7 @@ unitTests = testGroup
   , ut18
   , ut19
   , ut20
+  , ut21
   ]
 
 scProps :: TestTree
@@ -204,4 +205,12 @@ ut20 = testGroup
   $   removeAt [1, 2, 3, 4, 5] 6
   @?= (Nothing, [1, 2, 3, 4, 5])
   , testCase "Empty list" $ removeAt [] 0 @?= (Nothing, [] :: [Int])
+  ]
+
+ut21 :: TestTree
+ut21 = testGroup
+  "Problem 21: insertAt"
+  [ testCase "Normal insertion" $ insertAt 3 [1, 2, 4, 5] 3 @?= [1, 2, 3, 4, 5]
+  , testCase "Left overflow" $ insertAt 1 [2, 3, 4, 5] (-1) @?= [1, 2, 3, 4, 5]
+  , testCase "Right overflow" $ insertAt 5 [1, 2, 3, 4] 6 @?= [1, 2, 3, 4, 5]
   ]
